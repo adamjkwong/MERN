@@ -56,10 +56,9 @@ function eat(){
     var food = 'gone';
 }
 */
-/*
+
 function eat(){
-    var food;
-    food = 'half-chicken';
+    var food = 'half-chicken';
     console.log(food);
     food = 'gone';
 }
@@ -67,7 +66,7 @@ var food;
 food = 'chicken';
 console.log(food);
 eat();
-*/
+
 
 /*
 mean();
@@ -146,7 +145,7 @@ console.log(dojo);
 learn();
 console.log(dojo);
 */
-
+/*
 console.log(makeDojo("Chicago", 65));
 console.log(makeDojo("Berkeley", 0));
 function makeDojo(name, students){
@@ -161,3 +160,4 @@ function makeDojo(name, students){
     }
     return dojo;
 }
+*/
