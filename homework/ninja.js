@@ -7,17 +7,17 @@ class Ninja {
         this.wisdom = 10
     }
     sayName() {
-        console.log("This Ninja's name is: " + ninja1.name)
+        console.log("This Ninja's name is: " + this.name)
     }
     showStats() {
-        console.log(ninja1.name + "has the following stats: ")
-        console.log("Health: " + ninja1.health)
-        console.log("Speed: " + ninja1.speed)
-        console.log("Strength: " + ninja1.strength)
-        console.log("Wisdom: " + ninja1.wisdom)
+        console.log(this.name + "has the following stats: ")
+        console.log("Health: " + this.health)
+        console.log("Speed: " + this.speed)
+        console.log("Strength: " + this.strength)
+        console.log("Wisdom: " + this.wisdom)
     }
     drinkSake() {
-        console.log("When " + ninja1.name + " drank Sake, they gained +3 health")
+        console.log("When " + this.name + " drank Sake, they gained +3 health")
         this.health += 3;
     }
 }
