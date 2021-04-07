@@ -11,7 +11,7 @@ class Ninja {
     }
     showStats() {
         console.log(this.name + " has the following stats: ")
-        console.log("Health: " + this.health + ", Speed: " + this.speed + ", Strength: " + this.strength + ", Wisdom: " + this.wisdom)
+        console.log("Health: " + this.health + ", Speed: " + this.speed + ", Strength: " + this.strength)
     }
     drinkSake() {
         console.log("When " + this.name + " drank Sake, they gained +3 health")
@@ -27,6 +27,10 @@ class Sensei extends Ninja{
         this.speed = 10
         this.strength = 10
         this.wisdom = 10
+    }
+    showStats() {
+        super.showStats();
+        console.log("Sensei also has Wisdom: " + this.wisdom)
     }
     speakWisdom() {
         const power_up = super.drinkSake();
