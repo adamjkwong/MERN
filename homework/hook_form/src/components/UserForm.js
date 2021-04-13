@@ -2,7 +2,7 @@ import react, { useState } from  'react';
     
     
 const UserForm = (props) => {
-    const {first_name, setFirstName} = props
+    const [first_name, setFirstName] = useState("");
     const [last_name, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");  
