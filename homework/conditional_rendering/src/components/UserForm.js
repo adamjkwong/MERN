@@ -20,7 +20,10 @@ const UserForm = (props) => {
     };
     var handleFirstName = (e) => {
         setFirstName(e.target.value)
-        if(firstName.length < 2) {
+        // Why doesn't this part seem to work?
+        if(firstName.length == 0) {
+            setFirstNameError("");
+        } else if(firstName.length < 2) {
             setFirstNameError("First name is required!");
         } else if(firstName.length < 5) {
             setFirstNameError("First name must be at least 5 characters!");
