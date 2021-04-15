@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
 import UserForm from './components/UserForm';
-import react, { useState } from  'react';
 
 
 function App() {
