@@ -20,7 +20,6 @@ const UserForm = (props) => {
     };
     var handleFirstName = (e) => {
         setFirstName(e.target.value)
-        // Why doesn't this part seem to work?
         if(firstName.length == 0) {
             setFirstNameError("");
         } else if(firstName.length < 2) {
@@ -62,19 +61,19 @@ const UserForm = (props) => {
         }
     }
     var handleConfirmPassword = (e) => {
-        setConfirmPassword(e.target.value)
-        if(confirmPassword.length < 2) {
+        const new_value = e.target.value
+        if(new_value.length < 2) {
             setPasswordError("Password is required!");
-        } else if(confirmPassword.length < 8) {
+        } else if(new_value.length < 8) {
             setPasswordError("Password must be at least 8 characters!");
         } else {
-            comparePassword(e.target.value,password);
+            comparePassword(new_value,password);
         }
-        // if(confirmPassword === password) ask about this at office hours
+        setConfirmPassword(new_value)
     }
     var comparePassword = (str1,str2) => {
         if(str1 === str2){
-            setPasswordError("Good Job!")
+            setPasswordError("")
         } else {
             setPasswordError("These passwords do not match!")
 
