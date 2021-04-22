@@ -2,14 +2,13 @@ import React, { useState } from 'react';
     
     
 const BoxForm = (props) => {
+    const {boxColorArray, setBoxColorArray } = props;
     const [color, setColor] = useState("");
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.onNewColor( color );
-        //Add a new form to instance of boxdisplay.jsx to app.js
-        //Appending?
-    };
+        setBoxColorArray ([ boxColorArray, color ]);
+    }
     
     return (
         <form onSubmit={ handleSubmit }>
