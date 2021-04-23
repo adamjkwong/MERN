@@ -7,7 +7,7 @@ const BoxForm = (props) => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        setBoxColorArray ([ boxColorArray, color ]);
+        setBoxColorArray ([ ...boxColorArray, color ]);
     }
     
     return (
