@@ -1,3 +1,15 @@
+#one {
+
+}
+
+#two {
+
+}
+
+#three {
+
+}
+
 .App {
   text-align: center;
 }
@@ -37,13 +49,19 @@
   }
 }
 
-.message_content{
-
+.selectedTab {
+  color: white;
+  background-color: black;
+  border: 2px solid black;
 }
 
-.tab{
-
+.nonSelectedTab {
+  color: black;
+  background-color: white;
+  border: 2px solid #bbbbbb;
 }
+
+.
 
 .TabTopper{
 

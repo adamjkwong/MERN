@@ -1,20 +1,26 @@
 import './App.css';
 import React, { useState } from 'react';
 import TabTop from './components/TabTop';
-    
+import TabDisplay from './components/TabDisplay';
     
 function App() {
-    const [message, setMessage ] = useState("");
+    const ArrayofTabs = [
+        {label: "Tab 1", content: "Tab 1 content is here"},
+        {label: "Tab 2", content: "Tab 2 content is here"},
+        {label: "Tab 3", content: "Tab 3 content is here"},
+        {label: "Tab 4", content: "Tab 4 content is here"},
+        {label: "Tab 5", content: "Tab 5 content is here"},
+    ]
 
+    const [allTheTabs, setAllTheTabs] = useState(ArrayofTabs);
+    const [currentTabIndex, setCurrentTabIndex] = useState(0);
     return (
-        <div className="AllContainer">
-            <h1>Tabs Assignment</h1>
-            <div className="TabContainer">
-                <TabTop id="1" className="tab" tabNum={1} message={ message } setMessage={ setMessage }/>
-                <TabTop id="2" className="tab" tabNum={2} message={ message } setMessage={ setMessage }/>
-                <TabTop id="3" className="tab" tabNum={3} message={ message } setMessage={ setMessage }/>
-                <p> { message }</p>
-            </div>
+        <div className="App">
+                <TabTop allTheTabs = { allTheTabs }
+                currentTabIndex = { currentTabIndex }
+                setCurrentTabIndex = { setCurrentTabIndex }
+                />
+                <TabDisplay allTheTabs = { allTheTabs } currentTabIndex = { currentTabIndex }/>
         </div>
     );
 }

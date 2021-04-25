@@ -1,29 +1,31 @@
 import React, { useState } from 'react';
 
 const TabTop = props => {
-    const [tabNum] = useState("");
-    const [message, setMessage ] = useState("");
-    const onClickHandler = (e) => {
-        e.preventDefault();
-        alert("You have clicked the button");
-        setMessage ("The selected tab is: " + props.tabNum) ;
+    const { allTheTabs, currentTabIndex, setCurrentTabIndex } = props;
+    const tabStyle = (index) => {
+        if (index === currentTabIndex) {
+            return "selectedTab";
+        } else { 
+            return "nonSelectedTab";
+        }
     }
-// var handleTab = (e) => {
-//     setFirstName(e.target.value)
-//     if(firstName.length == 0) {
-//         setFirstNameError("");
-//     } else if(firstName.length < 5) {
-//         setFirstNameError("First name must be at least 5 characters!");
-//     } else {
-//         setFirstNameError("");
-//     }
-// }
- 
+
+    const setSelectedTab = (index) => {
+        setCurrentTabIndex(index);
+    }
+
     return (
         <div>
-            <p class = "TabTopper" onClick={ onClickHandler }>Tab Num: { props.tabNum } </p>
+        { }
+            {
+            allTheTabs.map((item, index) => (
+                <div className={`tab ${ tabStyle(index) }`} onClick={(e) => setSelectedTab(index) }>
+                { item.label }
+                </div>
+            ))
+        }
         </div>
-    );
+    )
 }
     
 export default TabTop;
