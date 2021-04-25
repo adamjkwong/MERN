@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+.message_content{
+
+}
+
+.tab{
+
+}
+
+.TabTopper{
+
+}
+
+.TabContainer{
+  display: flex;
+  flex-direction: row;
+  align-content: space-evenly;
+}
+
+.AllContainer{
+  margin-left: 40%;
+  display: flex;
+  flex-direction: column;
+  align-content: space-evenly;
+}
