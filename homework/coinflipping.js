@@ -5,7 +5,7 @@ function fiveHeads() {
     return new Promise( (resolve, reject) => {
         let headsCount = 0;
         let attempts = 0;
-        let maxAttempts = 1000;
+        let maxAttempts = 100;
 
         while(headsCount < 5 && attempts <= maxAttempts) {
             attempts++;
@@ -16,11 +16,12 @@ function fiveHeads() {
             } else {
                 headsCount = 0;
             }
-        if(attempts <= maxAttempts) {
-            resolve('It took ${attempts} number of tries to flip five consecutive heads');
+        }
+        if(headsCount <= maxAttempts) {
+            console.log(attempts)
+            resolve(`It took ${attempts} number of tries to flip five consecutive heads`);
         } else {
             reject("The code never resolved");
-        }
         }
     });
 }
