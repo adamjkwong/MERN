@@ -20,7 +20,10 @@ function App() {
         <ul>
             {
             pokemons.map((pokemonObj, index)=>{
-                return (<li key={index}>{pokemonObj.name}</li>)
+                return (
+                    <div>
+                        <li key={index}>Name: {pokemonObj.name} </li>
+                    </div>)
             })
             }
         </ul>
@@ -28,4 +31,4 @@ function App() {
 );
 }
 
-export default App;
+export default PokemonInfo;
