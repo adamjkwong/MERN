@@ -1,10 +1,7 @@
 
 import './App.css';
-import axios from 'axios';
 import HomeComponent from './components/HomeComponent';
-import NumberComponent from './components/NumberComponent';
-import HelloComponent from './components/HelloComponent';
-import ColorsComponent from './components/ColorsComponent';
+import StringComponent from './components/StringComponent';
 import React, {useState, useEffect} from 'react';
 import { Router } from "@reach/router";
 
@@ -13,9 +10,8 @@ function App() {
     <div className="App">
         <Router>
             <HomeComponent path="/home" />
-            <NumberComponent path="/:id" />
-            <HelloComponent path="/:word" />
-            <ColorsComponent path="localhost:3000/hello/:color1/:color2" />
+            <StringComponent path="/:input/" />
+            <StringComponent path="/:input/:fontColor/:backColor" />
         </Router>
     </div>
 )
