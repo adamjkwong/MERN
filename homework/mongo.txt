@@ -1,0 +1,535 @@
+(base) ➜  Faker_API git:(main) mongo
+MongoDB shell version v4.4.5
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("9bde5a10-ea3f-491f-9043-99cfbff3e24b") }
+MongoDB server version: 4.4.5
+---
+The server generated these startup warnings when booting: 
+        2021-05-02T21:19:09.240-07:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> db.students.find()
+> db.students.find()
+> db.createCollection("students")
+{ "ok" : 1 }
+> db.students.find()
+> show dbs
+admin        0.000GB
+config       0.000GB
+local        0.000GB
+my_first_Db  0.000GB
+test         0.000GB
+> use my_first_Db
+switched to db my_first_Db
+> db.students.find()
+{ "_id" : ObjectId("608f7e694c1097b7b85d944b"), "name" : "jake", "home_state" : "washington", "lucky_number" : 5, "birthday" : { "month" : 2, "day" : 3, "year" : 1993 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" }, { "coding" : "javascript", "brunch" : "pickles", "MongoDB" : "nope" } ] }
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 13, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" }, { "coding" : "kotlin", "brunch" : "banana", "MongoDB" : "wut" } ] }
+{ "_id" : ObjectId("608f7e8f4c1097b7b85d944d"), "name" : "batman", "home_state" : "california", "lucky_number" : 1, "birthday" : { "month" : 7, "day" : 23, "year" : 1993 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" }, { "coding" : "alfred", "brunch" : "bats", "MongoDB" : "absolutely" } ] }
+{ "_id" : ObjectId("608f7ea44c1097b7b85d944e"), "name" : "superman", "home_state" : "california", "lucky_number" : 7, "birthday" : { "month" : 7, "day" : 7, "year" : 2000 }, "interests" : { "coding" : "alfredo", "brunch" : "manican", "MongoDB" : "huh" } }
+> db.students.updateMany({},{$pull: { "coding" : "test", "brunch" : "test", "MongoDB" : "test" }})
+{ "acknowledged" : true, "matchedCount" : 4, "modifiedCount" : 0 }
+> db.students.find()
+{ "_id" : ObjectId("608f7e694c1097b7b85d944b"), "name" : "jake", "home_state" : "washington", "lucky_number" : 5, "birthday" : { "month" : 2, "day" : 3, "year" : 1993 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" }, { "coding" : "javascript", "brunch" : "pickles", "MongoDB" : "nope" } ] }
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 13, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" }, { "coding" : "kotlin", "brunch" : "banana", "MongoDB" : "wut" } ] }
+{ "_id" : ObjectId("608f7e8f4c1097b7b85d944d"), "name" : "batman", "home_state" : "california", "lucky_number" : 1, "birthday" : { "month" : 7, "day" : 23, "year" : 1993 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" }, { "coding" : "alfred", "brunch" : "bats", "MongoDB" : "absolutely" } ] }
+{ "_id" : ObjectId("608f7ea44c1097b7b85d944e"), "name" : "superman", "home_state" : "california", "lucky_number" : 7, "birthday" : { "month" : 7, "day" : 7, "year" : 2000 }, "interests" : { "coding" : "alfredo", "brunch" : "manican", "MongoDB" : "huh" } }
+> db.students.updateMany({},{$pop:{array_key:(1)}})
+{ "acknowledged" : true, "matchedCount" : 4, "modifiedCount" : 0 }
+> db.students.find()
+{ "_id" : ObjectId("608f7e694c1097b7b85d944b"), "name" : "jake", "home_state" : "washington", "lucky_number" : 5, "birthday" : { "month" : 2, "day" : 3, "year" : 1993 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" }, { "coding" : "javascript", "brunch" : "pickles", "MongoDB" : "nope" } ] }
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 13, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" }, { "coding" : "kotlin", "brunch" : "banana", "MongoDB" : "wut" } ] }
+{ "_id" : ObjectId("608f7e8f4c1097b7b85d944d"), "name" : "batman", "home_state" : "california", "lucky_number" : 1, "birthday" : { "month" : 7, "day" : 23, "year" : 1993 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" }, { "coding" : "alfred", "brunch" : "bats", "MongoDB" : "absolutely" } ] }
+{ "_id" : ObjectId("608f7ea44c1097b7b85d944e"), "name" : "superman", "home_state" : "california", "lucky_number" : 7, "birthday" : { "month" : 7, "day" : 7, "year" : 2000 }, "interests" : { "coding" : "alfredo", "brunch" : "manican", "MongoDB" : "huh" } }
+> db.students.update({name:"jake"},{$pop:{array_key:(1)}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> --help
+NaN
+> help
+	db.help()                    help on db methods
+	db.mycoll.help()             help on collection methods
+	sh.help()                    sharding helpers
+	rs.help()                    replica set helpers
+	help admin                   administrative help
+	help connect                 connecting to a db help
+	help keys                    key shortcuts
+	help misc                    misc things to know
+	help mr                      mapreduce
+
+	show dbs                     show database names
+	show collections             show collections in current database
+	show users                   show users in current database
+	show profile                 show most recent system.profile entries with time >= 1ms
+	show logs                    show the accessible logger names
+	show log [name]              prints out the last segment of log in memory, 'global' is default
+	use <db_name>                set current database
+	db.mycoll.find()             list objects in collection mycoll
+	db.mycoll.find( { a : 1 } )  list objects in mycoll where a == 1
+	it                           result of the last line evaluated; use to further iterate
+	DBQuery.shellBatchSize = x   set default number of items to display on shell
+	exit                         quit the mongo shell
+> db.mycoll.help()
+DBCollection help
+	db.mycoll.find().help() - show DBCursor help
+	db.mycoll.bulkWrite( operations, <optional params> ) - bulk execute write operations, optional parameters are: w, wtimeout, j
+	db.mycoll.count( query = {}, <optional params> ) - count the number of documents that matches the query, optional parameters are: limit, skip, hint, maxTimeMS
+	db.mycoll.countDocuments( query = {}, <optional params> ) - count the number of documents that matches the query, optional parameters are: limit, skip, hint, maxTimeMS
+	db.mycoll.estimatedDocumentCount( <optional params> ) - estimate the document count using collection metadata, optional parameters are: maxTimeMS
+	db.mycoll.convertToCapped(maxBytes) - calls {convertToCapped:'mycoll', size:maxBytes}} command
+	db.mycoll.createIndex(keypattern[,options])
+	db.mycoll.createIndexes([keypatterns], <options>)
+	db.mycoll.dataSize()
+	db.mycoll.deleteOne( filter, <optional params> ) - delete first matching document, optional parameters are: w, wtimeout, j
+	db.mycoll.deleteMany( filter, <optional params> ) - delete all matching documents, optional parameters are: w, wtimeout, j
+	db.mycoll.distinct( key, query, <optional params> ) - e.g. db.mycoll.distinct( 'x' ), optional parameters are: maxTimeMS
+	db.mycoll.drop() drop the collection
+	db.mycoll.dropIndex(index) - e.g. db.mycoll.dropIndex( "indexName" ) or db.mycoll.dropIndex( { "indexKey" : 1 } )
+	db.mycoll.hideIndex(index) - e.g. db.mycoll.hideIndex( "indexName" ) or db.mycoll.hideIndex( { "indexKey" : 1 } )
+	db.mycoll.unhideIndex(index) - e.g. db.mycoll.unhideIndex( "indexName" ) or db.mycoll.unhideIndex( { "indexKey" : 1 } )
+	db.mycoll.dropIndexes()
+	db.mycoll.ensureIndex(keypattern[,options]) - DEPRECATED, use createIndex() instead
+	db.mycoll.explain().help() - show explain help
+	db.mycoll.reIndex()
+	db.mycoll.find([query],[fields]) - query is an optional query filter. fields is optional set of fields to return.
+	                                              e.g. db.mycoll.find( {x:77} , {name:1, x:1} )
+	db.mycoll.find(...).count()
+	db.mycoll.find(...).limit(n)
+	db.mycoll.find(...).skip(n)
+	db.mycoll.find(...).sort(...)
+	db.mycoll.findOne([query], [fields], [options], [readConcern])
+	db.mycoll.findOneAndDelete( filter, <optional params> ) - delete first matching document, optional parameters are: projection, sort, maxTimeMS
+	db.mycoll.findOneAndReplace( filter, replacement, <optional params> ) - replace first matching document, optional parameters are: projection, sort, maxTimeMS, upsert, returnNewDocument
+	db.mycoll.findOneAndUpdate( filter, <update object or pipeline>, <optional params> ) - update first matching document, optional parameters are: projection, sort, maxTimeMS, upsert, returnNewDocument
+	db.mycoll.getDB() get DB object associated with collection
+	db.mycoll.getPlanCache() get query plan cache associated with collection
+	db.mycoll.getIndexes()
+	db.mycoll.insert(obj)
+	db.mycoll.insertOne( obj, <optional params> ) - insert a document, optional parameters are: w, wtimeout, j
+	db.mycoll.insertMany( [objects], <optional params> ) - insert multiple documents, optional parameters are: w, wtimeout, j
+	db.mycoll.mapReduce( mapFunction , reduceFunction , <optional params> )
+	db.mycoll.aggregate( [pipeline], <optional params> ) - performs an aggregation on a collection; returns a cursor
+	db.mycoll.remove(query)
+	db.mycoll.replaceOne( filter, replacement, <optional params> ) - replace the first matching document, optional parameters are: upsert, w, wtimeout, j
+	db.mycoll.renameCollection( newName , <dropTarget> ) renames the collection.
+	db.mycoll.runCommand( name , <options> ) runs a db command with the given name where the first param is the collection name
+	db.mycoll.save(obj)
+	db.mycoll.stats({scale: N, indexDetails: true/false, indexDetailsKey: <index key>, indexDetailsName: <index name>})
+	db.mycoll.storageSize() - includes free space allocated to this collection
+	db.mycoll.totalIndexSize() - size in bytes of all the indexes
+	db.mycoll.totalSize() - storage allocated for all data and indexes
+	db.mycoll.update( query, <update object or pipeline>[, upsert_bool, multi_bool] ) - instead of two flags, you can pass an object with fields: upsert, multi, hint
+	db.mycoll.updateOne( filter, <update object or pipeline>, <optional params> ) - update the first matching document, optional parameters are: upsert, w, wtimeout, j, hint
+	db.mycoll.updateMany( filter, <update object or pipeline>, <optional params> ) - update all matching documents, optional parameters are: upsert, w, wtimeout, j, hint
+	db.mycoll.validate( <full> ) - SLOW
+	db.mycoll.getShardVersion() - only for use with sharding
+	db.mycoll.getShardDistribution() - prints statistics about data distribution in the cluster
+	db.mycoll.getSplitKeysForChunks( <maxChunkSize> ) - calculates split points over all chunks and returns splitter function
+	db.mycoll.getWriteConcern() - returns the write concern used for any operations on this collection, inherited from server/db if set
+	db.mycoll.setWriteConcern( <write concern doc> ) - sets the write concern for writes to the collection
+	db.mycoll.unsetWriteConcern( <write concern doc> ) - unsets the write concern for writes to the collection
+	db.mycoll.latencyStats() - display operation latency histograms for this collection
+> db.students.find()
+{ "_id" : ObjectId("608f7e694c1097b7b85d944b"), "name" : "jake", "home_state" : "washington", "lucky_number" : 5, "birthday" : { "month" : 2, "day" : 3, "year" : 1993 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" }, { "coding" : "javascript", "brunch" : "pickles", "MongoDB" : "nope" } ] }
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 13, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" }, { "coding" : "kotlin", "brunch" : "banana", "MongoDB" : "wut" } ] }
+{ "_id" : ObjectId("608f7e8f4c1097b7b85d944d"), "name" : "batman", "home_state" : "california", "lucky_number" : 1, "birthday" : { "month" : 7, "day" : 23, "year" : 1993 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" }, { "coding" : "alfred", "brunch" : "bats", "MongoDB" : "absolutely" } ] }
+{ "_id" : ObjectId("608f7ea44c1097b7b85d944e"), "name" : "superman", "home_state" : "california", "lucky_number" : 7, "birthday" : { "month" : 7, "day" : 7, "year" : 2000 }, "interests" : { "coding" : "alfredo", "brunch" : "manican", "MongoDB" : "huh" } }
+> db.students.update({name:"jake"},{$pop:{array_key:1}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.students.updateMany({},{"$pull": { "coding" : "test", "brunch" : "test", "MongoDB" : "test" }})
+{ "acknowledged" : true, "matchedCount" : 4, "modifiedCount" : 0 }
+> db.students.updateMany({},{"$pull": { "coding" : "test", "brunch" : "test", "MongoDB" : "test" }})
+{ "acknowledged" : true, "matchedCount" : 4, "modifiedCount" : 0 }
+> db.students.find()
+{ "_id" : ObjectId("608f7e694c1097b7b85d944b"), "name" : "jake", "home_state" : "washington", "lucky_number" : 5, "birthday" : { "month" : 2, "day" : 3, "year" : 1993 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" }, { "coding" : "javascript", "brunch" : "pickles", "MongoDB" : "nope" } ] }
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 13, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" }, { "coding" : "kotlin", "brunch" : "banana", "MongoDB" : "wut" } ] }
+{ "_id" : ObjectId("608f7e8f4c1097b7b85d944d"), "name" : "batman", "home_state" : "california", "lucky_number" : 1, "birthday" : { "month" : 7, "day" : 23, "year" : 1993 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" }, { "coding" : "alfred", "brunch" : "bats", "MongoDB" : "absolutely" } ] }
+{ "_id" : ObjectId("608f7ea44c1097b7b85d944e"), "name" : "superman", "home_state" : "california", "lucky_number" : 7, "birthday" : { "month" : 7, "day" : 7, "year" : 2000 }, "interests" : { "coding" : "alfredo", "brunch" : "manican", "MongoDB" : "huh" } }
+> db.students.updateMany({},{"$pull": {"interests": [ "coding" : "test", "brunch" : "test", "MongoDB" : "test" ]})
+... ^C
+
+> db.students.update({"name":"jake"},{$pop: {interests:1}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.find()
+{ "_id" : ObjectId("608f7e694c1097b7b85d944b"), "name" : "jake", "home_state" : "washington", "lucky_number" : 5, "birthday" : { "month" : 2, "day" : 3, "year" : 1993 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" } ] }
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 13, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" }, { "coding" : "kotlin", "brunch" : "banana", "MongoDB" : "wut" } ] }
+{ "_id" : ObjectId("608f7e8f4c1097b7b85d944d"), "name" : "batman", "home_state" : "california", "lucky_number" : 1, "birthday" : { "month" : 7, "day" : 23, "year" : 1993 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" }, { "coding" : "alfred", "brunch" : "bats", "MongoDB" : "absolutely" } ] }
+{ "_id" : ObjectId("608f7ea44c1097b7b85d944e"), "name" : "superman", "home_state" : "california", "lucky_number" : 7, "birthday" : { "month" : 7, "day" : 7, "year" : 2000 }, "interests" : { "coding" : "alfredo", "brunch" : "manican", "MongoDB" : "huh" } }
+> db.students.update({"name":"bart"},{$pop: {interests:1}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.update({"name":"batman"},{$pop: {interests:1}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.update({"name":"superman"},{$pop: {interests:1}})
+WriteResult({
+	"nMatched" : 0,
+	"nUpserted" : 0,
+	"nModified" : 0,
+	"writeError" : {
+		"code" : 14,
+		"errmsg" : "Path 'interests' contains an element of non-array type 'object'"
+	}
+})
+> db.students.find()
+{ "_id" : ObjectId("608f7e694c1097b7b85d944b"), "name" : "jake", "home_state" : "washington", "lucky_number" : 5, "birthday" : { "month" : 2, "day" : 3, "year" : 1993 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" } ] }
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 13, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" } ] }
+{ "_id" : ObjectId("608f7e8f4c1097b7b85d944d"), "name" : "batman", "home_state" : "california", "lucky_number" : 1, "birthday" : { "month" : 7, "day" : 23, "year" : 1993 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" } ] }
+{ "_id" : ObjectId("608f7ea44c1097b7b85d944e"), "name" : "superman", "home_state" : "california", "lucky_number" : 7, "birthday" : { "month" : 7, "day" : 7, "year" : 2000 }, "interests" : { "coding" : "alfredo", "brunch" : "manican", "MongoDB" : "huh" } }
+> db.students.find()
+{ "_id" : ObjectId("608f7e694c1097b7b85d944b"), "name" : "jake", "home_state" : "washington", "lucky_number" : 5, "birthday" : { "month" : 2, "day" : 3, "year" : 1993 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" } ] }
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 13, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" } ] }
+{ "_id" : ObjectId("608f7e8f4c1097b7b85d944d"), "name" : "batman", "home_state" : "california", "lucky_number" : 1, "birthday" : { "month" : 7, "day" : 23, "year" : 1993 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" } ] }
+{ "_id" : ObjectId("608f7ea44c1097b7b85d944e"), "name" : "superman", "home_state" : "california", "lucky_number" : 7, "birthday" : { "month" : 7, "day" : 7, "year" : 2000 }, "interests" : { "coding" : "alfredo", "brunch" : "manican", "MongoDB" : "huh" } }
+> db.students.updateMany({"name":"jake"},{$set:{interests: {coding, brunch, mongoDB, taxes }}})
+uncaught exception: ReferenceError: coding is not defined :
+@(shell):1:59
+> db.students.updateMany({"name":"jake"},{$set:{interests: {"coding": taxes, brunch: taxes, mongoDB:taxes }}})
+uncaught exception: ReferenceError: taxes is not defined :
+@(shell):1:59
+> db.students.updateMany({"name":"jake"},{$set:{interests: {"coding": "taxes", "brunch": "taxes", "mongoDB":"taxes" }}})
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.students.find()
+{ "_id" : ObjectId("608f7e694c1097b7b85d944b"), "name" : "jake", "home_state" : "washington", "lucky_number" : 5, "birthday" : { "month" : 2, "day" : 3, "year" : 1993 }, "interests" : { "coding" : "taxes", "brunch" : "taxes", "mongoDB" : "taxes" } }
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 13, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" } ] }
+{ "_id" : ObjectId("608f7e8f4c1097b7b85d944d"), "name" : "batman", "home_state" : "california", "lucky_number" : 1, "birthday" : { "month" : 7, "day" : 23, "year" : 1993 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" } ] }
+{ "_id" : ObjectId("608f7ea44c1097b7b85d944e"), "name" : "superman", "home_state" : "california", "lucky_number" : 7, "birthday" : { "month" : 7, "day" : 7, "year" : 2000 }, "interests" : { "coding" : "alfredo", "brunch" : "manican", "MongoDB" : "huh" } }
+> db.students.update({"name":"bart"},{$pull:{"interests"}}
+... ^C
+
+> db.students.update({"name":"bart"},{$pull:1})
+WriteResult({
+	"nMatched" : 0,
+	"nUpserted" : 0,
+	"nModified" : 0,
+	"writeError" : {
+		"code" : 9,
+		"errmsg" : "Modifiers operate on fields but we found type double instead. For example: {$mod: {<field>: ...}} not {$pull: 1.0}"
+	}
+})
+> db.students.update({"name":"bart"},{$pull:(1)})
+WriteResult({
+	"nMatched" : 0,
+	"nUpserted" : 0,
+	"nModified" : 0,
+	"writeError" : {
+		"code" : 9,
+		"errmsg" : "Modifiers operate on fields but we found type double instead. For example: {$mod: {<field>: ...}} not {$pull: 1.0}"
+	}
+})
+> db.students.find()
+{ "_id" : ObjectId("608f7e694c1097b7b85d944b"), "name" : "jake", "home_state" : "washington", "lucky_number" : 5, "birthday" : { "month" : 2, "day" : 3, "year" : 1993 }, "interests" : { "coding" : "taxes", "brunch" : "taxes", "mongoDB" : "taxes" } }
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 13, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" } ] }
+{ "_id" : ObjectId("608f7e8f4c1097b7b85d944d"), "name" : "batman", "home_state" : "california", "lucky_number" : 1, "birthday" : { "month" : 7, "day" : 23, "year" : 1993 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" } ] }
+{ "_id" : ObjectId("608f7ea44c1097b7b85d944e"), "name" : "superman", "home_state" : "california", "lucky_number" : 7, "birthday" : { "month" : 7, "day" : 7, "year" : 2000 }, "interests" : { "coding" : "alfredo", "brunch" : "manican", "MongoDB" : "huh" } }
+> db.students.update({"name":"bart"},{$pull:{"coding":"taxes"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.students.update({"name":"bart"},{$pull:{ "coding" : "taxes", "brunch" : "taxes", "mongoDB" : "taxes" }})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.students.update({"name":"bart"},{$pull:{ "interests":{"coding" : "taxes", "brunch" : "taxes", "mongoDB" : "taxes" }}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.students.update({"name":"bart"},{$pull:{ "interests":{"coding" : "test", "brunch" : "test", "mongoDB" : "test" }}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.students.update({"name":"bart"},{$pull:{ "interests":(1) }})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.students.update({"name":"bart"},{$pull:{ "interests":1 }})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.students.update({"name":"bart"},{$pull:{ "interests":(-1) }})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.students.update({"name":"bart"},{$pull:{ "interests":{} }})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.find()
+{ "_id" : ObjectId("608f7e694c1097b7b85d944b"), "name" : "jake", "home_state" : "washington", "lucky_number" : 5, "birthday" : { "month" : 2, "day" : 3, "year" : 1993 }, "interests" : { "coding" : "taxes", "brunch" : "taxes", "mongoDB" : "taxes" } }
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 13, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ ] }
+{ "_id" : ObjectId("608f7e8f4c1097b7b85d944d"), "name" : "batman", "home_state" : "california", "lucky_number" : 1, "birthday" : { "month" : 7, "day" : 23, "year" : 1993 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" } ] }
+{ "_id" : ObjectId("608f7ea44c1097b7b85d944e"), "name" : "superman", "home_state" : "california", "lucky_number" : 7, "birthday" : { "month" : 7, "day" : 7, "year" : 2000 }, "interests" : { "coding" : "alfredo", "brunch" : "manican", "MongoDB" : "huh" } }
+> db.students.update({"home_state":"california"},{$pull:{}})
+WriteResult({
+	"nMatched" : 0,
+	"nUpserted" : 0,
+	"nModified" : 0,
+	"writeError" : {
+		"code" : 9,
+		"errmsg" : "'$pull' is empty. You must specify a field like so: {$pull: {<field>: ...}}"
+	}
+})
+> db.students.find()
+{ "_id" : ObjectId("608f7e694c1097b7b85d944b"), "name" : "jake", "home_state" : "washington", "lucky_number" : 5, "birthday" : { "month" : 2, "day" : 3, "year" : 1993 }, "interests" : { "coding" : "taxes", "brunch" : "taxes", "mongoDB" : "taxes" } }
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 13, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ ] }
+{ "_id" : ObjectId("608f7e8f4c1097b7b85d944d"), "name" : "batman", "home_state" : "california", "lucky_number" : 1, "birthday" : { "month" : 7, "day" : 23, "year" : 1993 }, "interests" : [ { "coding" : "test", "brunch" : "test", "MongoDB" : "test" } ] }
+{ "_id" : ObjectId("608f7ea44c1097b7b85d944e"), "name" : "superman", "home_state" : "california", "lucky_number" : 7, "birthday" : { "month" : 7, "day" : 7, "year" : 2000 }, "interests" : { "coding" : "alfredo", "brunch" : "manican", "MongoDB" : "huh" } }
+> db.students.remove({"home_state":"california"})
+WriteResult({ "nRemoved" : 2 })
+> db.students.find()
+{ "_id" : ObjectId("608f7e694c1097b7b85d944b"), "name" : "jake", "home_state" : "washington", "lucky_number" : 5, "birthday" : { "month" : 2, "day" : 3, "year" : 1993 }, "interests" : { "coding" : "taxes", "brunch" : "taxes", "mongoDB" : "taxes" } }
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 13, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ ] }
+> db.students.find()
+{ "_id" : ObjectId("608f7e694c1097b7b85d944b"), "name" : "jake", "home_state" : "washington", "lucky_number" : 5, "birthday" : { "month" : 2, "day" : 3, "year" : 1993 }, "interests" : { "coding" : "taxes", "brunch" : "taxes", "mongoDB" : "taxes" } }
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 13, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ ] }
+> db.students.remove({"name":"jake","luck_number":{$gte:5})
+... ^C
+
+> db.students.deleteOne({"lucky_number":{$gte:5}})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.students.find()
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 13, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ ] }
+> db.students.update({},{$addToSet:{"number_of_belts":0}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.students.find()
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 13, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ ], "number_of_belts" : [ 0 ] }
+> db.students.insert({"name"="bongo"})
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:26
+> db.students.insert({"name"="bongo","home_state"="washington"})
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:26
+> db.students.insert({"name"="bongo","home_state""washington"})
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:26
+> db.students.insert({"name":"bongo","home_state":"washington"})
+WriteResult({ "nInserted" : 1 })
+> db.students.find()
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 13, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ ], "number_of_belts" : [ 0 ] }
+{ "_id" : ObjectId("6090e75174431e7f1b2f457b"), "name" : "bongo", "home_state" : "washington" }
+> db.students.updateMany({},{"number_of_belts":+1})
+uncaught exception: Error: the update operation document must contain atomic operators :
+DBCollection.prototype.updateMany@src/mongo/shell/crud_api.js:655:19
+@(shell):1:1
+> db.students.updateMany({},{$inc:{"number_of_belts":1}})
+WriteError({
+	"index" : 0,
+	"code" : 14,
+	"errmsg" : "Cannot apply $inc to a value of non-numeric type. {_id: ObjectId('608f7e7a4c1097b7b85d944c')} has the field 'number_of_belts' of non-numeric type array",
+	"op" : {
+		"q" : {
+			
+		},
+		"u" : {
+			"$inc" : {
+				"number_of_belts" : 1
+			}
+		},
+		"multi" : true,
+		"upsert" : false
+	}
+}) :
+WriteError({
+	"index" : 0,
+	"code" : 14,
+	"errmsg" : "Cannot apply $inc to a value of non-numeric type. {_id: ObjectId('608f7e7a4c1097b7b85d944c')} has the field 'number_of_belts' of non-numeric type array",
+	"op" : {
+		"q" : {
+			
+		},
+		"u" : {
+			"$inc" : {
+				"number_of_belts" : 1
+			}
+		},
+		"multi" : true,
+		"upsert" : false
+	}
+})
+WriteError@src/mongo/shell/bulk_api.js:458:48
+mergeBatchResults@src/mongo/shell/bulk_api.js:855:49
+executeBatch@src/mongo/shell/bulk_api.js:919:13
+Bulk/this.execute@src/mongo/shell/bulk_api.js:1163:21
+DBCollection.prototype.updateMany@src/mongo/shell/crud_api.js:690:17
+@(shell):1:1
+> db.students.find()
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 13, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ ], "number_of_belts" : [ 0 ] }
+{ "_id" : ObjectId("6090e75174431e7f1b2f457b"), "name" : "bongo", "home_state" : "washington" }
+> db.students.updateMany({},{$inc:{"lucky_number":-1}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
+> db.students.find()
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 12, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ ], "number_of_belts" : [ 0 ] }
+{ "_id" : ObjectId("6090e75174431e7f1b2f457b"), "name" : "bongo", "home_state" : "washington", "lucky_number" : -1 }
+> db.students.updateMany({},{$rename:{"number_of_belts":0,"belts_earned":1}})
+WriteError({
+	"index" : 0,
+	"code" : 2,
+	"errmsg" : "The 'to' field for $rename must be a string: number_of_belts: 0.0",
+	"op" : {
+		"q" : {
+			
+		},
+		"u" : {
+			"$rename" : {
+				"number_of_belts" : 0,
+				"belts_earned" : 1
+			}
+		},
+		"multi" : true,
+		"upsert" : false
+	}
+}) :
+WriteError({
+	"index" : 0,
+	"code" : 2,
+	"errmsg" : "The 'to' field for $rename must be a string: number_of_belts: 0.0",
+	"op" : {
+		"q" : {
+			
+		},
+		"u" : {
+			"$rename" : {
+				"number_of_belts" : 0,
+				"belts_earned" : 1
+			}
+		},
+		"multi" : true,
+		"upsert" : false
+	}
+})
+WriteError@src/mongo/shell/bulk_api.js:458:48
+mergeBatchResults@src/mongo/shell/bulk_api.js:855:49
+executeBatch@src/mongo/shell/bulk_api.js:919:13
+Bulk/this.execute@src/mongo/shell/bulk_api.js:1163:21
+DBCollection.prototype.updateMany@src/mongo/shell/crud_api.js:690:17
+@(shell):1:1
+> db.students.updateMany({},{$rename:{"number_of_belts":"0","belts_earned":"1"}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 1 }
+> db.students.find()
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 12, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ ], "0" : [ 0 ] }
+{ "_id" : ObjectId("6090e75174431e7f1b2f457b"), "name" : "bongo", "home_state" : "washington", "lucky_number" : -1 }
+> db.students.updateMany({},{$rename:{"0":"belts_earned"}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 1 }
+> db.students.find()
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 12, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ ], "belts_earned" : [ 0 ] }
+{ "_id" : ObjectId("6090e75174431e7f1b2f457b"), "name" : "bongo", "home_state" : "washington", "lucky_number" : -1 }
+> db.students.updateMany({},{$pull:{"lucky_number":""}})
+WriteError({
+	"index" : 0,
+	"code" : 2,
+	"errmsg" : "Cannot apply $pull to a non-array value",
+	"op" : {
+		"q" : {
+			
+		},
+		"u" : {
+			"$pull" : {
+				"lucky_number" : ""
+			}
+		},
+		"multi" : true,
+		"upsert" : false
+	}
+}) :
+WriteError({
+	"index" : 0,
+	"code" : 2,
+	"errmsg" : "Cannot apply $pull to a non-array value",
+	"op" : {
+		"q" : {
+			
+		},
+		"u" : {
+			"$pull" : {
+				"lucky_number" : ""
+			}
+		},
+		"multi" : true,
+		"upsert" : false
+	}
+})
+WriteError@src/mongo/shell/bulk_api.js:458:48
+mergeBatchResults@src/mongo/shell/bulk_api.js:855:49
+executeBatch@src/mongo/shell/bulk_api.js:919:13
+Bulk/this.execute@src/mongo/shell/bulk_api.js:1163:21
+DBCollection.prototype.updateMany@src/mongo/shell/crud_api.js:690:17
+@(shell):1:1
+> db.students.find()
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "lucky_number" : 12, "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ ], "belts_earned" : [ 0 ] }
+{ "_id" : ObjectId("6090e75174431e7f1b2f457b"), "name" : "bongo", "home_state" : "washington", "lucky_number" : -1 }
+> db.students.updateMany({},{$unset:{lucky_number:""}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
+> db.students.find()
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ ], "belts_earned" : [ 0 ] }
+{ "_id" : ObjectId("6090e75174431e7f1b2f457b"), "name" : "bongo", "home_state" : "washington" }
+> db.students.updateMany({},{$set:{updated_on:{$type:"timestamp"}}})
+WriteError({
+	"index" : 0,
+	"code" : 52,
+	"errmsg" : "The dollar ($) prefixed field '$type' in 'updated_on.$type' is not valid for storage.",
+	"op" : {
+		"q" : {
+			
+		},
+		"u" : {
+			"$set" : {
+				"updated_on" : {
+					"$type" : "timestamp"
+				}
+			}
+		},
+		"multi" : true,
+		"upsert" : false
+	}
+}) :
+WriteError({
+	"index" : 0,
+	"code" : 52,
+	"errmsg" : "The dollar ($) prefixed field '$type' in 'updated_on.$type' is not valid for storage.",
+	"op" : {
+		"q" : {
+			
+		},
+		"u" : {
+			"$set" : {
+				"updated_on" : {
+					"$type" : "timestamp"
+				}
+			}
+		},
+		"multi" : true,
+		"upsert" : false
+	}
+})
+WriteError@src/mongo/shell/bulk_api.js:458:48
+mergeBatchResults@src/mongo/shell/bulk_api.js:855:49
+executeBatch@src/mongo/shell/bulk_api.js:919:13
+Bulk/this.execute@src/mongo/shell/bulk_api.js:1163:21
+DBCollection.prototype.updateMany@src/mongo/shell/crud_api.js:690:17
+@(shell):1:1
+> db.students.find()
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ ], "belts_earned" : [ 0 ] }
+{ "_id" : ObjectId("6090e75174431e7f1b2f457b"), "name" : "bongo", "home_state" : "washington" }
+> db.students.updateMany({},{$set:{updated_on:{"$$NOW"}}})
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:52
+> db.students.updateMany({},{$set:{updated_on:{$$NOW}}})
+uncaught exception: ReferenceError: $$NOW is not defined :
+@(shell):1:46
+> db.students.updateMany({},{$set:{updated_on:{"$$NOW"}}})
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:52
+> db.students.updateMany({},{$set:{"updated_on":{"$$NOW"}}})
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:54
+> db.students.updateMany({},{$set:{"updated_on":new date()}})
+uncaught exception: ReferenceError: date is not defined :
+@(shell):1:34
+> db.students.updateMany({},{$set:{"updated_on":"$currentDate"}})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
+> db.students.find()
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ ], "belts_earned" : [ 0 ], "updated_on" : "$currentDate" }
+{ "_id" : ObjectId("6090e75174431e7f1b2f457b"), "name" : "bongo", "home_state" : "washington", "updated_on" : "$currentDate" }
+> db.students.updateMany({},{$set:{"updated_on":{ "$currentDate": { "date": { "$type": date }}}}})
+uncaught exception: ReferenceError: date is not defined :
+@(shell):1:77
+> db.students.updateMany({},{$set:{"updated_on":Date() }}}})
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:55
+> db.students.updateMany({},{$set:{"updated_on":Date() }})
+{ "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
+> db.students.find()
+{ "_id" : ObjectId("608f7e7a4c1097b7b85d944c"), "name" : "bart", "home_state" : "washington", "birthday" : { "month" : 2, "day" : 23, "year" : 1995 }, "interests" : [ ], "belts_earned" : [ 0 ], "updated_on" : "Mon May 03 2021 23:35:43 GMT-0700 (PDT)" }
+{ "_id" : ObjectId("6090e75174431e7f1b2f457b"), "name" : "bongo", "home_state" : "washington", "updated_on" : "Mon May 03 2021 23:35:43 GMT-0700 (PDT)" }
+> 
+
