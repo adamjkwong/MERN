@@ -22,6 +22,7 @@ const JokeSchema = new mongoose.Schema({
 },
     { timestamps: true });
 
-const User = mongoose.model("Joke", JokeSchema);
+const Joke = mongoose.model("Joke", JokeSchema);
+//What does line 25 actually do? 
 
 module.exports = Joke;

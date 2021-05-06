@@ -12,4 +12,6 @@ app.use(express.json(), express.urlencoded({ extended: true }));
 const AllMyJokeRoutes = require("./server/routes/joke.routes");
 AllMyJokeRoutes(app);
 
+//Make sure "apps" is going into the required route
+
 app.listen(port, () => console.log("The server is all fired up and ready to tell you some jokes!"));
