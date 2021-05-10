@@ -1,7 +1,8 @@
 import React, { useState,useEffect } from 'react'
+import {Link} from '@reach/router';
 import axios from 'axios';
 const ProductDisplay = () => {
-    const [ProductList, setProductList] = useState([]); 
+    const [productList, setProductList] = useState([]); 
 
     useEffect(()=>{
         axios.get('http://localhost:8000/api/products')
@@ -17,11 +18,12 @@ const ProductDisplay = () => {
     return (
         <div>
             {
-            ProductList.map((product, idx) => (
+            productList.map((product, idx) => (
                 <div>
                 <h2>{product.title}</h2>
-                <h3>{product.price}</h3>
+                <h3>${product.price}</h3>
                 <h4>{product.description}</h4>
+                <Link to = {product._id}>Take me to {product.title} product Page</Link>
                 </div>
             ))
             }
