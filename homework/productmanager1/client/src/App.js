@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react'
 import Main from './views/Main';
+import { Router } from "@reach/router";
+import SingleProductDisplay from './components/SingleProductDisplay';
+import './App.css';
+
 function App() {
   return (
     <div className="App">
-      <Main />
+      <Router>
+        <Main path="/"/>
+        <SingleProductDisplay path="/:id"/>
+      </Router>
     </div>
   );
 }

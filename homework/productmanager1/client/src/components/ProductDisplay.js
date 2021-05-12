@@ -1,8 +1,18 @@
 import React, { useState,useEffect } from 'react'
-import {Link} from '@reach/router';
+import {Link, navigate} from '@reach/router';
 import axios from 'axios';
-const ProductDisplay = () => {
+import '../App.css';
+const ProductDisplay = (props) => {
     const [productList, setProductList] = useState([]); 
+
+    const onDelete = (productID) => {
+        axios.delete('http://localhost:8000/api/products/'+productID)
+        .then(res=>{
+            console.log(res.data);
+            navigate("/")
+        })
+        .catch(err=>console.log(err))
+        }
 
     useEffect(()=>{
         axios.get('http://localhost:8000/api/products')
@@ -17,13 +27,25 @@ const ProductDisplay = () => {
 
     return (
         <div>
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Entity Link</th>
+                </tr>
+            </table>
             {
             productList.map((product, idx) => (
                 <div>
-                <h2>{product.title}</h2>
-                <h3>${product.price}</h3>
-                <h4>{product.description}</h4>
-                <Link to = {product._id}>Take me to {product.title} product Page</Link>
+                    <table>
+                        <tr>
+                            <td>{product.title}</td>
+                            <td>${product.price}</td>
+                            <td>{product.description}</td>
+                            <td><Link to = {product._id}>Link to specific product</Link> <div onClick={(e)=>{onDelete(product._id)}}>Delete</div></td>
+                        </tr>
+                    </table>
                 </div>
             ))
             }

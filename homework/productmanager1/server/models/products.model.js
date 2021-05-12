@@ -9,7 +9,7 @@ const ProductSchema = new mongoose.Schema({
 	price: {
         type: Number,
         required: [true, "you must have a price for your joke"],
-        min: [1, "your price must be at least 1 character"],
+        min: [1, "your price must be greater than $1"],
         //How do I make this something like >= 1? 
     },
     description : {

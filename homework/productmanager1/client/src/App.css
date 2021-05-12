@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+.mainbody {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 5px;
+  width: 25%;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  text-align: left;
+  background-color: #FF5A5F;
+  color: white;
+}
