@@ -9,7 +9,7 @@ const ProductDisplay = (props) => {
     const deleteProduct = (productId) => {
         axios.delete('http://localhost:8000/api/products/'+productId)
         .then(res=>{
-            window.location.reload()
+        //    window.location.reload()
         })
         .catch(err=>console.log(err))
         }
@@ -22,7 +22,7 @@ const ProductDisplay = (props) => {
                 console.log(res.data)
             })
             .catch(err=>console.log(err))
-    },[])
+    },[productList]) //This is the line needed to perform those refreshes, rather than using window.locat.reload()
     //These brackets are for protection, use them whenever I do a useEffect
 
     return (
