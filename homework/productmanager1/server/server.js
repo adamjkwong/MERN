@@ -11,7 +11,7 @@ app.use(express.json(), express.urlencoded({ extended: true }));
 app.use(cors({credentials:true, origin:"http://localhost:3000"}));
 
 // This is where we import the users routes function from our user.routes.js file
-const AllMyProductRoutes = require("./routes/product.routes");
+const AllMyProductRoutes = require("./routes/products.routes");
 //const AllMyProductRoutes = require(".server/routes/product.routes");
 AllMyProductRoutes(app);
 

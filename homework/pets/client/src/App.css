@@ -36,3 +36,37 @@
     transform: rotate(360deg);
   }
 }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 5px;
+  width: 10%;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  text-align: left;
+  background-color: #FF5A5F;
+  color: white;
+}
+
+.detailed_pet_flex_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+.detailed_pet_flex_entity {
+  width: 600px;
+}
+
+.error-txt {
+  color: red;
+}
